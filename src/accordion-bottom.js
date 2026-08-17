@@ -16,6 +16,11 @@ const bottomIndicatorStyles = `
   .accordion-headline[aria-expanded='true'] + .accordion-body-wrapper {
     box-shadow: inset 0 -2px 0 #e21833;
   }
+
+  :host([data-theme='dark'])
+    .accordion-headline[aria-expanded='true'] + .accordion-body-wrapper {
+    box-shadow: inset 0 -2px 0 #FFD200;
+  }
 `;
 
 /**

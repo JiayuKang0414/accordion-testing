@@ -98,7 +98,7 @@ await page.waitForTimeout(600);
 const darkState = await readState('umd-element-accordion-item-bottom', 5);
 assert.equal(darkState.expanded, 'true');
 assert.equal(darkState.headlineBoxShadow, 'none');
-assert.match(darkState.bodyWrapperBoxShadow, /226, 24, 51/);
+assert.match(darkState.bodyWrapperBoxShadow, /255, 210, 0/);
 assert.equal(darkState.bodyTextColor, 'rgb(255, 255, 255)');
 await page.evaluate(() => window.scrollTo(0, 0));
 await page.waitForTimeout(500);

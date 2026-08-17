@@ -29,6 +29,11 @@ test('moves the expanded-state line below the expanded content', () => {
   assert.match(componentSource, /inset 0 -2px 0 #e21833/);
 });
 
+test('uses the UMD yellow indicator in the dark theme', () => {
+  assert.match(componentSource, /:host\(\[data-theme='dark'\]\)/);
+  assert.match(componentSource, /inset 0 -2px 0 #FFD200/);
+});
+
 test('QA page includes current and new accordion comparisons', () => {
   assert.match(qaPage, /Current component: top indicator/);
   assert.match(qaPage, /New component: bottom indicator/);
