@@ -100,6 +100,24 @@ assert.equal(darkState.expanded, 'true');
 assert.equal(darkState.headlineBoxShadow, 'none');
 assert.match(darkState.bodyWrapperBoxShadow, /255, 210, 0/);
 assert.equal(darkState.bodyTextColor, 'rgb(255, 255, 255)');
+
+await page.evaluate(() => {
+  const host = document.querySelectorAll('umd-element-accordion-item-bottom')[6];
+  host
+    .querySelector('umd-element-accordion-item')
+    .shadowRoot.querySelector('.accordion-headline')
+    .click();
+});
+await page.waitForTimeout(600);
+
+const darkClickedState = await readState(
+  'umd-element-accordion-item-bottom',
+  6,
+);
+assert.equal(darkClickedState.expanded, 'true');
+assert.equal(darkClickedState.headlineBoxShadow, 'none');
+assert.match(darkClickedState.bodyWrapperBoxShadow, /255, 210, 0/);
+assert.equal(darkClickedState.bodyTextColor, 'rgb(255, 255, 255)');
 await page.evaluate(() => window.scrollTo(0, 0));
 await page.waitForTimeout(500);
 
@@ -152,6 +170,7 @@ console.log(JSON.stringify({
   bottomIndicator: newOpenState,
   clicked: clickedState,
   dark: darkState,
+  darkClicked: darkClickedState,
   mobileOverflow: hasHorizontalOverflow,
 }, null, 2));
 
