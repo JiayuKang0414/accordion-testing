@@ -78,12 +78,12 @@ assert.match(newOpenState.bodyWrapperBoxShadow, /226, 24, 51/);
 assert.equal(newOpenState.hasOverride, true);
 
 await hoverHeadline(0);
-const lightHoverState = await readState(
+const lightExpandedHoverState = await readState(
   'umd-element-accordion-item-bottom',
   0,
 );
-assert.match(lightHoverState.headlineBoxShadow, /226, 24, 51/);
-assert.equal(lightHoverState.bodyWrapperBoxShadow, 'none');
+assert.equal(lightExpandedHoverState.headlineBoxShadow, 'none');
+assert.match(lightExpandedHoverState.bodyWrapperBoxShadow, /226, 24, 51/);
 
 await page.mouse.move(0, 0);
 await page.waitForTimeout(150);
@@ -139,12 +139,12 @@ assert.match(darkState.bodyWrapperBoxShadow, /255, 210, 0/);
 assert.equal(darkState.bodyTextColor, 'rgb(255, 255, 255)');
 
 await hoverHeadline(5);
-const darkHoverState = await readState(
+const darkExpandedHoverState = await readState(
   'umd-element-accordion-item-bottom',
   5,
 );
-assert.match(darkHoverState.headlineBoxShadow, /255, 210, 0/);
-assert.equal(darkHoverState.bodyWrapperBoxShadow, 'none');
+assert.equal(darkExpandedHoverState.headlineBoxShadow, 'none');
+assert.match(darkExpandedHoverState.bodyWrapperBoxShadow, /255, 210, 0/);
 
 await page.mouse.move(0, 0);
 await page.waitForTimeout(150);
@@ -235,12 +235,12 @@ assert.deepEqual(browserErrors, []);
 console.log(JSON.stringify({
   current: currentState,
   bottomIndicator: newOpenState,
-  lightHover: lightHoverState,
+  lightExpandedHover: lightExpandedHoverState,
   lightAfterHover: lightAfterHoverState,
   lightClosedHover: lightClosedHoverState,
   clicked: clickedState,
   dark: darkState,
-  darkHover: darkHoverState,
+  darkExpandedHover: darkExpandedHoverState,
   darkAfterHover: darkAfterHoverState,
   darkClosedHover: darkClosedHoverState,
   darkClicked: darkClickedState,

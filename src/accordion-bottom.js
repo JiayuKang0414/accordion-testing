@@ -17,13 +17,9 @@ const bottomIndicatorStyles = `
     box-shadow: inset 0 -2px 0 #e21833;
   }
 
-  .accordion-headline[aria-expanded]:hover {
+  .accordion-headline[aria-expanded='false']:hover {
     border-top-color: transparent !important;
     box-shadow: inset 0 -2px 0 #e21833;
-  }
-
-  .accordion-headline[aria-expanded='true']:hover + .accordion-body-wrapper {
-    box-shadow: none;
   }
 
   :host([data-theme='dark'])
@@ -32,13 +28,8 @@ const bottomIndicatorStyles = `
   }
 
   :host([data-theme='dark'])
-    .accordion-headline[aria-expanded]:hover {
+    .accordion-headline[aria-expanded='false']:hover {
     box-shadow: inset 0 -2px 0 #FFD200;
-  }
-
-  :host([data-theme='dark'])
-    .accordion-headline[aria-expanded='true']:hover + .accordion-body-wrapper {
-    box-shadow: none;
   }
 `;
 

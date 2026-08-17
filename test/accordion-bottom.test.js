@@ -34,14 +34,14 @@ test('uses the UMD yellow indicator in the dark theme', () => {
   assert.match(componentSource, /inset 0 -2px 0 #FFD200/);
 });
 
-test('moves the indicator to the title bottom on hover', () => {
+test('shows the title-bottom hover indicator only when collapsed', () => {
   assert.match(
     componentSource,
-    /\.accordion-headline\[aria-expanded\]:hover \{/,
+    /\.accordion-headline\[aria-expanded='false'\]:hover \{/,
   );
-  assert.match(
+  assert.doesNotMatch(
     componentSource,
-    /:hover \+ \.accordion-body-wrapper \{\s+box-shadow: none/,
+    /aria-expanded='true'\]:hover \+ \.accordion-body-wrapper/,
   );
 });
 
