@@ -538,6 +538,11 @@
       color: #000000;
     }
   </style>
+  <style>
+    #current .current-accordion-list > umd-element-accordion-item {
+      margin-top: 0;
+    }
+  </style>
 
   <script>window.process = { env: {} };</script>
   <script src="../public/umd-components.js"></script>
@@ -593,7 +598,7 @@
     <section id="current" class="umd-layout-vertical-landing">
       <div class="umd-layout-space-horizontal-small">
         <h2 class="umd-sans-extralarge">Current component: top indicator</h2>
-        <div style="display:grid;gap:4px;margin-top:24px;">
+        <div class="current-accordion-list" style="display:flex;flex-direction:column;gap:4px;margin-top:24px;">
           <umd-element-accordion-item data-visual-open="true">
             <p slot="headline">What does the current component do?</p>
             <div slot="text">
