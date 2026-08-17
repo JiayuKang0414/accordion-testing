@@ -59,7 +59,7 @@ test('QA page includes current and new accordion comparisons', () => {
   );
   assert.match(
     qaPage,
-    /id="current"[\s\S]*?class="current-accordion-list"[^>]*display:flex;flex-direction:column;gap:4px/,
+    /id="current"[\s\S]*?class="current-accordion-list"[^>]*display:flex;flex-direction:column;gap:8px/,
   );
   assert.match(
     qaPage,

@@ -81,7 +81,7 @@ const currentItemGaps = await page.evaluate(() => {
 assert.equal(currentState.expanded, 'true');
 assert.equal(currentState.borderTopWidth, '2px');
 assert.match(currentState.borderTopColor, /226, 24, 51/);
-assert.deepEqual(currentItemGaps.map(Math.round), [4, 4, 4]);
+assert.deepEqual(currentItemGaps.map(Math.round), [8, 8, 8]);
 
 assert.equal(newOpenState.expanded, 'true');
 assert.equal(newOpenState.borderTopWidth, '2px');
