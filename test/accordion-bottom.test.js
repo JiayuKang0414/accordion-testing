@@ -57,4 +57,8 @@ test('QA page includes current and new accordion comparisons', () => {
     (qaPage.match(/<umd-element-accordion-item(?:\s|>)/g) ?? []).length,
     4,
   );
+  assert.match(
+    qaPage,
+    /id="current"[\s\S]*?display:grid;gap:4px/,
+  );
 });
