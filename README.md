@@ -5,7 +5,8 @@ current UMD `umd-element-accordion-item`. It keeps the existing slots,
 attributes, animation, keyboard behavior, and ARIA state, while moving the red
 open-state line from the top of the trigger to the bottom of the expanded
 content. The indicator is UMD red in the light theme and UMD yellow in the dark
-theme.
+theme. On hover, the indicator appears at the bottom of the title; for expanded
+items, it returns below the content when hover ends.
 
 ## Run the QA page
 

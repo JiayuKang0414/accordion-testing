@@ -56,6 +56,13 @@ const readState = (selector, index = 0) => page.evaluate(
   { selector, index },
 );
 
+const hoverHeadline = async (index) => {
+  const host = page.locator('umd-element-accordion-item-bottom').nth(index);
+  await host.scrollIntoViewIfNeeded();
+  await host.locator('.accordion-headline').hover();
+  await page.waitForTimeout(150);
+};
+
 const currentState = await readState('#current umd-element-accordion-item');
 const newOpenState = await readState('umd-element-accordion-item-bottom', 0);
 
@@ -69,6 +76,36 @@ assert.equal(newOpenState.borderTopColor, 'rgba(0, 0, 0, 0)');
 assert.equal(newOpenState.headlineBoxShadow, 'none');
 assert.match(newOpenState.bodyWrapperBoxShadow, /226, 24, 51/);
 assert.equal(newOpenState.hasOverride, true);
+
+await hoverHeadline(0);
+const lightHoverState = await readState(
+  'umd-element-accordion-item-bottom',
+  0,
+);
+assert.match(lightHoverState.headlineBoxShadow, /226, 24, 51/);
+assert.equal(lightHoverState.bodyWrapperBoxShadow, 'none');
+
+await page.mouse.move(0, 0);
+await page.waitForTimeout(150);
+const lightAfterHoverState = await readState(
+  'umd-element-accordion-item-bottom',
+  0,
+);
+assert.equal(lightAfterHoverState.headlineBoxShadow, 'none');
+assert.match(lightAfterHoverState.bodyWrapperBoxShadow, /226, 24, 51/);
+
+await hoverHeadline(2);
+const lightClosedHoverState = await readState(
+  'umd-element-accordion-item-bottom',
+  2,
+);
+assert.equal(lightClosedHoverState.expanded, 'false');
+assert.equal(lightClosedHoverState.borderTopColor, 'rgba(0, 0, 0, 0)');
+assert.match(lightClosedHoverState.headlineBoxShadow, /226, 24, 51/);
+assert.equal(lightClosedHoverState.bodyWrapperBoxShadow, 'none');
+
+await page.mouse.move(0, 0);
+await page.waitForTimeout(150);
 
 await page.evaluate(() => {
   const host = document.querySelectorAll('umd-element-accordion-item-bottom')[1];
@@ -100,6 +137,36 @@ assert.equal(darkState.expanded, 'true');
 assert.equal(darkState.headlineBoxShadow, 'none');
 assert.match(darkState.bodyWrapperBoxShadow, /255, 210, 0/);
 assert.equal(darkState.bodyTextColor, 'rgb(255, 255, 255)');
+
+await hoverHeadline(5);
+const darkHoverState = await readState(
+  'umd-element-accordion-item-bottom',
+  5,
+);
+assert.match(darkHoverState.headlineBoxShadow, /255, 210, 0/);
+assert.equal(darkHoverState.bodyWrapperBoxShadow, 'none');
+
+await page.mouse.move(0, 0);
+await page.waitForTimeout(150);
+const darkAfterHoverState = await readState(
+  'umd-element-accordion-item-bottom',
+  5,
+);
+assert.equal(darkAfterHoverState.headlineBoxShadow, 'none');
+assert.match(darkAfterHoverState.bodyWrapperBoxShadow, /255, 210, 0/);
+
+await hoverHeadline(6);
+const darkClosedHoverState = await readState(
+  'umd-element-accordion-item-bottom',
+  6,
+);
+assert.equal(darkClosedHoverState.expanded, 'false');
+assert.equal(darkClosedHoverState.borderTopColor, 'rgba(0, 0, 0, 0)');
+assert.match(darkClosedHoverState.headlineBoxShadow, /255, 210, 0/);
+assert.equal(darkClosedHoverState.bodyWrapperBoxShadow, 'none');
+
+await page.mouse.move(0, 0);
+await page.waitForTimeout(150);
 
 await page.evaluate(() => {
   const host = document.querySelectorAll('umd-element-accordion-item-bottom')[6];
@@ -168,8 +235,14 @@ assert.deepEqual(browserErrors, []);
 console.log(JSON.stringify({
   current: currentState,
   bottomIndicator: newOpenState,
+  lightHover: lightHoverState,
+  lightAfterHover: lightAfterHoverState,
+  lightClosedHover: lightClosedHoverState,
   clicked: clickedState,
   dark: darkState,
+  darkHover: darkHoverState,
+  darkAfterHover: darkAfterHoverState,
+  darkClosedHover: darkClosedHoverState,
   darkClicked: darkClickedState,
   mobileOverflow: hasHorizontalOverflow,
 }, null, 2));

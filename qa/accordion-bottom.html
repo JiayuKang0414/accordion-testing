@@ -541,11 +541,11 @@
 
   <script>window.process = { env: {} };</script>
   <script src="../public/umd-components.js"></script>
-  <script type="module" src="../src/accordion-bottom.js?v=dark-yellow-2"></script>
+  <script type="module" src="../src/accordion-bottom.js?v=hover-title-1"></script>
 </head>
 <body>
   <div style="background:#ffeb3b;color:#000;padding:8px 16px;font:13px/1.4 monospace;border-bottom:2px solid rgba(0,0,0,.2);position:sticky;top:0;z-index:9999;">
-    QA: umd-element-accordion-item-bottom | Open-state indicator moved below expanded content
+    QA: umd-element-accordion-item-bottom | Indicator moves to title bottom on hover
   </div>
 
   <umd-element-navigation-utility data-alert-off="true" role="navigation" aria-label="Utility navigation"></umd-element-navigation-utility>
@@ -584,7 +584,7 @@
           <span slot="eyebrow">Component QA</span>
           <h1 slot="headline">Accordion bottom indicator</h1>
           <div slot="text">
-            <p>The new component preserves the current UMD accordion behavior and moves the two-pixel red open-state line from the top edge of the trigger to the bottom of the expanded content.</p>
+            <p>The new component places the open-state indicator below the expanded content, then moves it to the bottom of the title while the title is hovered.</p>
           </div>
         </umd-element-section-intro-wide>
       </div>
@@ -611,7 +611,7 @@
           <umd-element-accordion-item-bottom data-visual-open="true">
             <p slot="headline">Where is the open-state indicator now?</p>
             <div slot="text">
-              <p>The red line now sits along the bottom edge of the expanded content, beneath the body copy.</p>
+              <p>The red line sits below the expanded content normally and moves to the bottom edge of the title on hover.</p>
             </div>
           </umd-element-accordion-item-bottom>
           <umd-element-accordion-item-bottom>
@@ -657,7 +657,7 @@
           <umd-element-accordion-item-bottom data-theme="dark" data-visual-open="true">
             <p slot="headline">Bottom indicator on dark</p>
             <div slot="text">
-              <p>The indicator remains below the expanded content and switches to UMD yellow, matching the dark-theme hover and control color.</p>
+              <p>The UMD yellow indicator sits below the expanded content normally and moves to the bottom edge of the title on hover.</p>
             </div>
           </umd-element-accordion-item-bottom>
           <umd-element-accordion-item-bottom data-theme="dark">

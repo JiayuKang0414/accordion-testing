@@ -34,6 +34,17 @@ test('uses the UMD yellow indicator in the dark theme', () => {
   assert.match(componentSource, /inset 0 -2px 0 #FFD200/);
 });
 
+test('moves the indicator to the title bottom on hover', () => {
+  assert.match(
+    componentSource,
+    /\.accordion-headline\[aria-expanded\]:hover \{/,
+  );
+  assert.match(
+    componentSource,
+    /:hover \+ \.accordion-body-wrapper \{\s+box-shadow: none/,
+  );
+});
+
 test('QA page includes current and new accordion comparisons', () => {
   assert.match(qaPage, /Current component: top indicator/);
   assert.match(qaPage, /New component: bottom indicator/);
