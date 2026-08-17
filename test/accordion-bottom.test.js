@@ -19,9 +19,13 @@ test('registers the bottom-indicator accordion custom element', () => {
   assert.match(componentSource, /customElements\.define/);
 });
 
-test('moves only the expanded-state line to the bottom edge', () => {
+test('moves the expanded-state line below the expanded content', () => {
   assert.match(componentSource, /aria-expanded='true'/);
   assert.match(componentSource, /border-top-color: transparent/);
+  assert.match(
+    componentSource,
+    /aria-expanded='true'] \+ \.accordion-body-wrapper/,
+  );
   assert.match(componentSource, /inset 0 -2px 0 #e21833/);
 });
 
@@ -30,4 +34,3 @@ test('QA page includes current and new accordion comparisons', () => {
   assert.match(qaPage, /New component: bottom indicator/);
   assert.match(qaPage, /<umd-element-accordion-item-bottom/);
 });
-

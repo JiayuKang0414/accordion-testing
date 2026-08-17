@@ -3,7 +3,8 @@
 This project adds `umd-element-accordion-item-bottom`, a small variant of the
 current UMD `umd-element-accordion-item`. It keeps the existing slots,
 attributes, animation, keyboard behavior, and ARIA state, while moving the red
-open-state line from the top of the trigger to the bottom.
+open-state line from the top of the trigger to the bottom of the expanded
+content.
 
 ## Run the QA page
 

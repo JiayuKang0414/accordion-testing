@@ -9,8 +9,12 @@ const bottomIndicatorStyles = `
   .accordion-headline[aria-expanded='true']:hover,
   .accordion-headline[aria-expanded='true']:focus {
     border-top-color: transparent !important;
+    box-shadow: none;
+    transition: background 0.5s, color 0.5s, padding 0.5s;
+  }
+
+  .accordion-headline[aria-expanded='true'] + .accordion-body-wrapper {
     box-shadow: inset 0 -2px 0 #e21833;
-    transition: background 0.5s, color 0.5s, padding 0.5s, box-shadow 0.5s;
   }
 `;
 

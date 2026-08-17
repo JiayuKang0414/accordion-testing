@@ -34,13 +34,16 @@ const readState = (selector, index = 0) => page.evaluate(
       ? host
       : host.querySelector('umd-element-accordion-item');
     const button = base.shadowRoot.querySelector('.accordion-headline');
+    const bodyWrapper = base.shadowRoot.querySelector('.accordion-body-wrapper');
     const style = getComputedStyle(button);
+    const bodyWrapperStyle = getComputedStyle(bodyWrapper);
 
     return {
       expanded: button.getAttribute('aria-expanded'),
       borderTopColor: style.borderTopColor,
       borderTopWidth: style.borderTopWidth,
-      boxShadow: style.boxShadow,
+      headlineBoxShadow: style.boxShadow,
+      bodyWrapperBoxShadow: bodyWrapperStyle.boxShadow,
       bodyTextColor: getComputedStyle(
         base.querySelector('[slot="text"] p')
           ?? base.querySelector('[slot="text"]'),
@@ -63,7 +66,8 @@ assert.match(currentState.borderTopColor, /226, 24, 51/);
 assert.equal(newOpenState.expanded, 'true');
 assert.equal(newOpenState.borderTopWidth, '2px');
 assert.equal(newOpenState.borderTopColor, 'rgba(0, 0, 0, 0)');
-assert.match(newOpenState.boxShadow, /226, 24, 51/);
+assert.equal(newOpenState.headlineBoxShadow, 'none');
+assert.match(newOpenState.bodyWrapperBoxShadow, /226, 24, 51/);
 assert.equal(newOpenState.hasOverride, true);
 
 await page.evaluate(() => {
@@ -77,7 +81,8 @@ await page.waitForTimeout(600);
 
 const clickedState = await readState('umd-element-accordion-item-bottom', 1);
 assert.equal(clickedState.expanded, 'true');
-assert.match(clickedState.boxShadow, /226, 24, 51/);
+assert.equal(clickedState.headlineBoxShadow, 'none');
+assert.match(clickedState.bodyWrapperBoxShadow, /226, 24, 51/);
 
 await page.locator('#dark-theme').scrollIntoViewIfNeeded();
 await page.waitForFunction(() => {
@@ -92,7 +97,8 @@ await page.waitForTimeout(600);
 
 const darkState = await readState('umd-element-accordion-item-bottom', 5);
 assert.equal(darkState.expanded, 'true');
-assert.match(darkState.boxShadow, /226, 24, 51/);
+assert.equal(darkState.headlineBoxShadow, 'none');
+assert.match(darkState.bodyWrapperBoxShadow, /226, 24, 51/);
 assert.equal(darkState.bodyTextColor, 'rgb(255, 255, 255)');
 await page.evaluate(() => window.scrollTo(0, 0));
 await page.waitForTimeout(500);
