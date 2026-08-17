@@ -40,6 +40,7 @@ const readState = (selector, index = 0) => page.evaluate(
 
     return {
       expanded: button.getAttribute('aria-expanded'),
+      focused: button.matches(':focus'),
       borderTopColor: style.borderTopColor,
       borderTopWidth: style.borderTopWidth,
       headlineBoxShadow: style.boxShadow,
@@ -121,6 +122,29 @@ assert.equal(clickedState.expanded, 'true');
 assert.equal(clickedState.headlineBoxShadow, 'none');
 assert.match(clickedState.bodyWrapperBoxShadow, /226, 24, 51/);
 
+await page
+  .locator('umd-element-accordion-item-bottom')
+  .nth(1)
+  .locator('.accordion-headline')
+  .click();
+await page.mouse.move(0, 0);
+await page.waitForTimeout(600);
+
+const lightCollapsedFocusedState = await readState(
+  'umd-element-accordion-item-bottom',
+  1,
+);
+assert.equal(lightCollapsedFocusedState.expanded, 'false');
+assert.equal(lightCollapsedFocusedState.focused, true);
+assert.equal(
+  lightCollapsedFocusedState.borderTopColor,
+  'rgba(0, 0, 0, 0)',
+);
+assert.match(
+  lightCollapsedFocusedState.headlineBoxShadow,
+  /226, 24, 51/,
+);
+
 await page.locator('#dark-theme').scrollIntoViewIfNeeded();
 await page.waitForFunction(() => {
   const host = document.querySelectorAll('umd-element-accordion-item-bottom')[5];
@@ -185,6 +209,29 @@ assert.equal(darkClickedState.expanded, 'true');
 assert.equal(darkClickedState.headlineBoxShadow, 'none');
 assert.match(darkClickedState.bodyWrapperBoxShadow, /255, 210, 0/);
 assert.equal(darkClickedState.bodyTextColor, 'rgb(255, 255, 255)');
+
+await page
+  .locator('umd-element-accordion-item-bottom')
+  .nth(6)
+  .locator('.accordion-headline')
+  .click();
+await page.mouse.move(0, 0);
+await page.waitForTimeout(600);
+
+const darkCollapsedFocusedState = await readState(
+  'umd-element-accordion-item-bottom',
+  6,
+);
+assert.equal(darkCollapsedFocusedState.expanded, 'false');
+assert.equal(darkCollapsedFocusedState.focused, true);
+assert.equal(
+  darkCollapsedFocusedState.borderTopColor,
+  'rgba(0, 0, 0, 0)',
+);
+assert.match(
+  darkCollapsedFocusedState.headlineBoxShadow,
+  /255, 210, 0/,
+);
 await page.evaluate(() => window.scrollTo(0, 0));
 await page.waitForTimeout(500);
 
@@ -239,11 +286,13 @@ console.log(JSON.stringify({
   lightAfterHover: lightAfterHoverState,
   lightClosedHover: lightClosedHoverState,
   clicked: clickedState,
+  lightCollapsedFocused: lightCollapsedFocusedState,
   dark: darkState,
   darkExpandedHover: darkExpandedHoverState,
   darkAfterHover: darkAfterHoverState,
   darkClosedHover: darkClosedHoverState,
   darkClicked: darkClickedState,
+  darkCollapsedFocused: darkCollapsedFocusedState,
   mobileOverflow: hasHorizontalOverflow,
 }, null, 2));
 

@@ -17,7 +17,8 @@ const bottomIndicatorStyles = `
     box-shadow: inset 0 -2px 0 #e21833;
   }
 
-  .accordion-headline[aria-expanded='false']:hover {
+  .accordion-headline[aria-expanded='false']:hover,
+  .accordion-headline[aria-expanded='false']:focus {
     border-top-color: transparent !important;
     box-shadow: inset 0 -2px 0 #e21833;
   }
@@ -28,7 +29,9 @@ const bottomIndicatorStyles = `
   }
 
   :host([data-theme='dark'])
-    .accordion-headline[aria-expanded='false']:hover {
+    .accordion-headline[aria-expanded='false']:hover,
+  :host([data-theme='dark'])
+    .accordion-headline[aria-expanded='false']:focus {
     box-shadow: inset 0 -2px 0 #FFD200;
   }
 `;

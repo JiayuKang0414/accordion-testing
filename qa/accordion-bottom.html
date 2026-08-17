@@ -541,11 +541,11 @@
 
   <script>window.process = { env: {} };</script>
   <script src="../public/umd-components.js"></script>
-  <script type="module" src="../src/accordion-bottom.js?v=collapsed-hover-1"></script>
+  <script type="module" src="../src/accordion-bottom.js?v=collapsed-focus-1"></script>
 </head>
 <body>
   <div style="background:#ffeb3b;color:#000;padding:8px 16px;font:13px/1.4 monospace;border-bottom:2px solid rgba(0,0,0,.2);position:sticky;top:0;z-index:9999;">
-    QA: umd-element-accordion-item-bottom | Title-bottom hover line only when collapsed
+    QA: umd-element-accordion-item-bottom | Collapsed hover and focus line at title bottom
   </div>
 
   <umd-element-navigation-utility data-alert-off="true" role="navigation" aria-label="Utility navigation"></umd-element-navigation-utility>
@@ -584,7 +584,7 @@
           <span slot="eyebrow">Component QA</span>
           <h1 slot="headline">Accordion bottom indicator</h1>
           <div slot="text">
-            <p>The open-state indicator stays below expanded content with no additional hover line. Collapsed titles show the indicator along their bottom edge on hover.</p>
+            <p>The open-state indicator stays below expanded content with no additional hover line. Collapsed titles show the indicator along their bottom edge on hover and focus.</p>
           </div>
         </umd-element-section-intro-wide>
       </div>
@@ -611,7 +611,7 @@
           <umd-element-accordion-item-bottom data-visual-open="true">
             <p slot="headline">Where is the open-state indicator now?</p>
             <div slot="text">
-              <p>The red line stays below the expanded content, including on hover; no additional line appears below the expanded title.</p>
+              <p>The red line stays below the expanded content, including on hover. After collapse, its focused title keeps the red line along the bottom edge.</p>
             </div>
           </umd-element-accordion-item-bottom>
           <umd-element-accordion-item-bottom>
@@ -657,7 +657,7 @@
           <umd-element-accordion-item-bottom data-theme="dark" data-visual-open="true">
             <p slot="headline">Bottom indicator on dark</p>
             <div slot="text">
-              <p>The UMD yellow line stays below expanded content on hover. A collapsed dark title shows the yellow line along its bottom edge when hovered.</p>
+              <p>The UMD yellow line stays below expanded content on hover. A collapsed dark title shows the yellow line along its bottom edge when hovered or focused.</p>
             </div>
           </umd-element-accordion-item-bottom>
           <umd-element-accordion-item-bottom data-theme="dark">
