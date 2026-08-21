@@ -538,12 +538,6 @@
       color: #000000;
     }
   </style>
-  <style>
-    #current .current-accordion-list > umd-element-accordion-item {
-      margin-top: 0;
-    }
-  </style>
-
   <script>window.process = { env: {} };</script>
   <script src="../public/umd-components.js"></script>
   <script type="module" src="../src/accordion-bottom.js?v=collapsed-focus-1"></script>
@@ -562,9 +556,8 @@
     </a>
     <nav slot="main-navigation">
       <umd-element-nav-item>
-        <a slot="primary-link" href="#comparison">Comparison</a>
+        <a slot="primary-link" href="#comparison">Overview</a>
         <div slot="dropdown-links">
-          <a href="#current">Current component</a>
           <a href="#new">Bottom-indicator component</a>
         </div>
       </umd-element-nav-item>
@@ -576,7 +569,7 @@
       </umd-element-nav-item>
     </nav>
     <div slot="primary-slide-links">
-      <a href="#comparison"><span>Comparison</span></a>
+      <a href="#comparison"><span>Overview</span></a>
       <a href="#light-theme"><span>Light theme</span></a>
       <a href="#dark-theme"><span>Dark theme</span></a>
     </div>
@@ -592,39 +585,6 @@
             <p>The open-state indicator stays below expanded content with no additional hover line. Collapsed titles show the indicator along their bottom edge on hover and focus.</p>
           </div>
         </umd-element-section-intro-wide>
-      </div>
-    </section>
-
-    <section id="current" class="umd-layout-vertical-landing">
-      <div class="umd-layout-space-horizontal-small">
-        <h2 class="umd-sans-extralarge">Current component: top indicator</h2>
-        <div class="current-accordion-list" style="display:flex;flex-direction:column;gap:8px;margin-top:24px;">
-          <umd-element-accordion-item data-visual-open="true">
-            <p slot="headline">What does the current component do?</p>
-            <div slot="text">
-              <p>When open, the current accordion places its red state indicator along the top edge of the trigger.</p>
-            </div>
-          </umd-element-accordion-item>
-          <umd-element-accordion-item>
-            <p slot="headline">How does a closed current item behave?</p>
-            <div slot="text">
-              <p>This item starts closed so reviewers can compare its hover, focus, and expand interactions with the new component.</p>
-            </div>
-          </umd-element-accordion-item>
-          <umd-element-accordion-item>
-            <p slot="headline">Does the current keyboard interaction still work?</p>
-            <div slot="text">
-              <p>Use Tab to focus this title, then press Enter or Space to verify the current accordion keyboard behavior and focus treatment.</p>
-            </div>
-          </umd-element-accordion-item>
-          <umd-element-accordion-item>
-            <p slot="headline">How does the current component handle longer content?</p>
-            <div slot="text">
-              <p>This review case includes more body copy to make the current component's spacing and disclosure animation easier to compare.</p>
-              <p>The additional paragraph also shows how multiple content blocks flow inside the existing accordion body.</p>
-            </div>
-          </umd-element-accordion-item>
-        </div>
       </div>
     </section>
 

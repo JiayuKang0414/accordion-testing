@@ -15,9 +15,8 @@ below the expanded content.
 npm start
 ```
 
-Open <http://127.0.0.1:8010/>. The page compares the current component with the
-new variant and includes light, dark, initially open, and initially closed
-cases.
+Open <http://127.0.0.1:8010/>. The page demonstrates the bottom-indicator
+variant with light, dark, initially open, and initially closed cases.
 
 ## Usage
 

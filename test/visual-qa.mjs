@@ -64,24 +64,7 @@ const hoverHeadline = async (index) => {
   await page.waitForTimeout(150);
 };
 
-const currentState = await readState('#current umd-element-accordion-item');
 const newOpenState = await readState('umd-element-accordion-item-bottom', 0);
-const currentItemGaps = await page.evaluate(() => {
-  const items = Array.from(
-    document.querySelectorAll('#current umd-element-accordion-item'),
-  );
-
-  return items.slice(1).map((item, index) => {
-    const previousRect = items[index].getBoundingClientRect();
-    const currentRect = item.getBoundingClientRect();
-    return currentRect.top - previousRect.bottom;
-  });
-});
-
-assert.equal(currentState.expanded, 'true');
-assert.equal(currentState.borderTopWidth, '2px');
-assert.match(currentState.borderTopColor, /226, 24, 51/);
-assert.deepEqual(currentItemGaps.map(Math.round), [8, 8, 8]);
 
 assert.equal(newOpenState.expanded, 'true');
 assert.equal(newOpenState.borderTopWidth, '2px');
@@ -292,8 +275,6 @@ await page.screenshot({
 assert.deepEqual(browserErrors, []);
 
 console.log(JSON.stringify({
-  current: currentState,
-  currentItemGaps,
   bottomIndicator: newOpenState,
   lightExpandedHover: lightExpandedHoverState,
   lightAfterHover: lightAfterHoverState,

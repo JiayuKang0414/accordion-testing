@@ -49,20 +49,13 @@ test('shows the title-bottom hover and focus indicator when collapsed', () => {
   );
 });
 
-test('QA page includes current and new accordion comparisons', () => {
-  assert.match(qaPage, /Current component: top indicator/);
+test('QA page includes only bottom-indicator accordion examples', () => {
+  assert.doesNotMatch(qaPage, /Current component: top indicator/);
   assert.match(qaPage, /New component: bottom indicator/);
   assert.match(qaPage, /<umd-element-accordion-item-bottom/);
   assert.equal(
     (qaPage.match(/<umd-element-accordion-item(?:\s|>)/g) ?? []).length,
-    4,
+    0,
   );
-  assert.match(
-    qaPage,
-    /id="current"[\s\S]*?class="current-accordion-list"[^>]*display:flex;flex-direction:column;gap:8px/,
-  );
-  assert.match(
-    qaPage,
-    /#current \.current-accordion-list > umd-element-accordion-item \{\s*margin-top: 0;/,
-  );
+  assert.doesNotMatch(qaPage, /href="#current"/);
 });
